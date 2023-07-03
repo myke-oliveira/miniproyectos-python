@@ -1,5 +1,6 @@
 #! /usr/bin/python3
 from math import ceil
+from re import sub
 
 def main():
     number = input('Introduzca un número: ')
@@ -114,7 +115,7 @@ def three_digits_group_to_word(three_digits_group):
     }
 
     hundreds, tens, units = three_digits_group
-    
+
     if hundreds == tens == '0':
         return UNIT_NAMES[units]
     
@@ -124,9 +125,12 @@ def three_digits_group_to_word(three_digits_group):
         return HUNDRED_NAMES[hundreds]
 
     if tens == '1' or tens == '2':
-        return ' '.join((HUNDRED_NAMES[hundreds], TEN_TO_TWENTY_NINE_NAMES[tens+units]))
+        word = ' '.join((HUNDRED_NAMES[hundreds], TEN_TO_TWENTY_NINE_NAMES[tens+units]))
+        return sub(r'\s+', ' ', word)
     
-    return ' '.join((HUNDRED_NAMES[hundreds], TEN_NAMES[tens], 'y', UNIT_NAMES[units]))
+    word = ' '.join((HUNDRED_NAMES[hundreds], TEN_NAMES[tens], 'y', UNIT_NAMES[units]))
+    return sub(r'\s+', ' ', word)
+
 
 if __name__ == '__main__':
     main()
