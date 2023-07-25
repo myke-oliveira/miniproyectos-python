@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
 import sqlite3
 from datetime import datetime
+from sys import argv
 
 ecommerces = [
     {
@@ -45,7 +46,7 @@ ecommerces = [
 ]
 
 def main():
-    word = 'mouse'
+    word = ' '.join(argv[1:])
     today = datetime.today().strftime('%Y-%m-%d')
     
     data_base = DataBase()
